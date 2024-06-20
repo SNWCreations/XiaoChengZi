@@ -1,0 +1,6 @@
+name: XiaoChengZi
+version: '${version}'
+main: snw.rfm.xiaochengzi.XiaoChengZi
+api-version: '1.20'
+authors: [SNWCreations]
+description: 修复了名为“小橙子找得到花和草”的bug。作者:ZX夏夜之风
