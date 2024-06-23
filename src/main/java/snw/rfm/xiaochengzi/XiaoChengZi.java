@@ -8,7 +8,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+
 public final class XiaoChengZi extends JavaPlugin implements Listener {
+    // already updated when constructing
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    private static final Set<Predicate<Material>> checks;
+
+    static {
+        checks = new HashSet<>() {
+            {
+                add(m -> m == Material.TALL_GRASS);
+                add(Tag.TALL_FLOWERS::isTagged);
+                add(m -> Tag.CLIMBABLE.isTagged(m) && m != Material.LADDER);
+            }
+        };
+    }
 
     @Override
     public void onEnable() {
@@ -27,7 +44,7 @@ public final class XiaoChengZi extends JavaPlugin implements Listener {
         for (Player player : getServer().getOnlinePlayers()) {
             Block headBlock = player.getEyeLocation().getBlock();
             Material type = headBlock.getType();
-            if (type == Material.TALL_GRASS || Tag.TALL_FLOWERS.isTagged(type)) {
+            if (checks.stream().anyMatch(i -> i.test(type))) {
                 headBlock.setType(Material.AIR, false);
                 Location where = headBlock.getLocation();
                 World world = headBlock.getWorld();
