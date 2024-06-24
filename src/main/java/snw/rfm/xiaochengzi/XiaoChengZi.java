@@ -59,7 +59,7 @@ public final class XiaoChengZi extends JavaPlugin implements Listener {
         event.getPlayer().sendMessage(
                 ChatColor.GREEN + "小橙子插件正在运行。作者: ZX夏夜之风",
                 ChatColor.GREEN + "我们修复了小橙子可以躲在花/草丛中的漏洞。",
-                ChatColor.GREEN + "-- ZX夏夜之风, 2024.6.9 17:26"
+                ChatColor.GREEN + "-- ZX夏夜之风, 2024.6.9 17:26, 2024.6.24 修改"
         );
     }
 }
